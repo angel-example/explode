@@ -12,15 +12,20 @@ main() async {
   await app.connect();
 
   WebSocketsService bombService = app.service('bombs'),
-      explosionService = app.service('explosions');
+      explosionService = app.service('explosions',
+          deserializer: (Map data) => new Explosion.fromJson(data));
 
   app.onError.listen((e) {
-    print('Whoops: $e');
-    print(e.errors);
+    window.alert('Whoops: $e');
+
+    // If `debug` is true in our server-side WebSocket plug-in,
+    // it will send us stack traces, which makes it easier to debug.
+    window.console.error(e);
+    e.errors.map(window.console.error);
   });
 
   explosionService.onCreated.listen((e) {
-    var explosion = new Explosion.fromJson(e.data);
+    var explosion = e.data as Explosion;
     $explosions.children
         .add(new LIElement()..text = 'Bomb #${explosion.bombId} exploded!');
   });

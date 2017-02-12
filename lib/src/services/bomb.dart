@@ -12,11 +12,11 @@ AngelConfigurer configureServer() {
     service.afterCreated.listen((HookedServiceEvent e) {
       // Bombs should explode 10 seconds after creation.
       var explosionService = e.service.app.service('explosions');
-      var bomb = e.result as Map;
+      var bomb = e.result as Bomb;
 
       new Future.delayed(new Duration(seconds: 10)).then((_) {
         print('KABOOM!');
-        explosionService.create(new Explosion(bombId: bomb['id']));
+        explosionService.create(new Explosion(bombId: bomb.id));
       });
     });
   };
@@ -26,11 +26,14 @@ class BombService extends Service {
   final List<Bomb> bombs = [];
 
   @override
+  index([params]) async => bombs;
+
+  @override
   create(data, [params]) async {
     // We're actually going to ignore the input data
     // in every case, and just spawn a new bomb.
     var bomb = new Bomb(id: bombs.length.toString());
     bombs.add(bomb);
-    return bomb.toJson();
+    return bomb;
   }
 }

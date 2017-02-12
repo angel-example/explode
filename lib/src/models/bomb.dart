@@ -2,14 +2,12 @@ library angel.models.bomb;
 
 class Bomb {
   String id;
-  bool exploded;
 
-  Bomb({this.id, this.exploded: false});
+  Bomb({this.id});
 
-  factory Bomb.fromJson(Map data) =>
-      new Bomb(id: data['id'], exploded: data['exploded'] == true);
+  factory Bomb.fromJson(Map data) => new Bomb(id: data['id']);
 
   Map toJson() {
-    return {'id': id, 'exploded': exploded == true};
+    return {'id': id};
   }
 }
