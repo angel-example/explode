@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:angel/src/models/bomb.dart';
-import 'package:angel/src/models/explosion.dart';
+import 'package:explode/src/models/bomb.dart';
+import 'package:explode/src/models/explosion.dart';
 import 'package:angel_framework/angel_framework.dart';
 
 AngelConfigurer configureServer() {

@@ -1,5 +1,4 @@
-/// Custom plugins go here.
-library angel.config.plugins;
+library explode.config.plugins;
 
 import 'dart:async';
 import 'package:angel_common/angel_common.dart';

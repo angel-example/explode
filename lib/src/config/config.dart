@@ -1,5 +1,4 @@
-/// Configuration for this Angel instance.
-library angel.config;
+library explode.config;
 
 import 'dart:io';
 import 'package:angel_common/angel_common.dart';

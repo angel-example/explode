@@ -1,6 +1,4 @@
-/// This should be used with `multiserver` as an entry
-/// point for `spawnIsolates`.
-library angel.cluster;
+library explode.cluster;
 
 import 'dart:async';
 import 'common.dart';

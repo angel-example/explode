@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:angel/src/models/models.dart';
+import 'package:explode/src/models/models.dart';
 import 'package:angel_websocket/browser.dart';
 
 // `WebSockets` extends the main `Angel` class from `angel_client` ;)

@@ -1,4 +1,4 @@
-library angel.routes.controllers;
+library explode.routes.controllers;
 
 import 'package:angel_common/angel_common.dart';
 import 'auth.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:isolate';
-import 'package:angel/angel.dart';
+import 'package:explode/explode.dart';
 import 'package:angel_diagnostics/angel_diagnostics.dart';
 import 'package:intl/intl.dart';
 

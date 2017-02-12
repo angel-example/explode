@@ -1,4 +1,4 @@
-library angel.models;
+library explode.models;
 
 export 'bomb.dart';
 export 'explosion.dart';

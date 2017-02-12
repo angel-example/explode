@@ -1,4 +1,4 @@
-library angel.models.bomb;
+library explode.models.bomb;
 
 class Bomb {
   String id;

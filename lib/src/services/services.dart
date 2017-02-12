@@ -1,5 +1,4 @@
-/// Declare services here!
-library angel.services;
+library explode.services;
 
 import 'package:angel_common/angel_common.dart';
 import 'package:angel_websocket/server.dart';

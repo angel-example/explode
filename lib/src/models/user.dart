@@ -1,4 +1,4 @@
-library angel.models.user;
+library explode.models.user;
 
 import 'package:angel_mongo/model.dart';
 import 'package:source_gen/generators/json_serializable.dart';

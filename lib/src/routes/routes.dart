@@ -1,5 +1,4 @@
-/// This app's route configuration.
-library angel.routes;
+library explode.routes;
 
 import 'package:angel_common/angel_common.dart';
 import 'controllers/controllers.dart' as Controllers;

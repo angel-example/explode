@@ -1,8 +1,5 @@
 #!/usr/bin/env dart
-/// This is intended to replace Nginx in your web stack.
-/// Either use this or another reverse proxy, but there is no real
-/// reason to use them together.
-library angel.multiserver;
+library explode.multiserver;
 
 import 'dart:io';
 import 'package:angel_compress/angel_compress.dart';

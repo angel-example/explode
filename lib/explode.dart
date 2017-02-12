@@ -1,5 +1,4 @@
-/// Your very own web application!
-library angel;
+library explode;
 
 import 'dart:async';
 import 'package:angel_common/angel_common.dart';
