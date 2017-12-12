@@ -10,7 +10,7 @@ pre-build the client app, and run the server:
 ```bash
 $ pub get
 $ pub build
-$ ANGEL_ENV=production dart bin/server.dart
+$ ANGEL_ENV=production dart bin/prod.dart
 ```
 
 And then, visit `http://localhost:3000` in any browser to see it in action.

@@ -1,5 +1,6 @@
 library explode.routes;
 
+import 'dart:async';
 import 'dart:io';
 import 'package:angel_cors/angel_cors.dart';
 import 'package:angel_framework/angel_framework.dart';
@@ -8,7 +9,7 @@ import 'package:angel_static/angel_static.dart';
 import 'package:file/local.dart';
 import 'package:http/http.dart' as http;
 
-configureServer(Angel app) async {
+Future configureServer(Angel app) async {
   // Enable CORS
   app.use(cors());
 
@@ -18,22 +19,14 @@ configureServer(Angel app) async {
     'deflate': ZLIB.encoder,
   });
 
-  // In development, mount a reverse proxy over pub serve
-  if (!app.isProduction) {
-    var proxy = new Proxy(app, new http.Client(), 'http://localhost:8080');
-
-    // Dispose of it when the server is shut down
-    app.shutdownHooks.add((_) async => proxy.close());
-
-    // Send fallback requests to the reverse proxy
-    app.use(proxy.handleRequest);
-  }
 
   // Mount a static server over web/.
   //
   // In production, this automatically mounts over build/web/.
-  var vDir = new VirtualDirectory(app, const LocalFileSystem());
-  app.use(vDir.handleRequest);
+  if (app.isProduction) {
+    var vDir = new VirtualDirectory(app, const LocalFileSystem());
+    app.use(vDir.handleRequest);
+  }
 
   // Any request that isn't handled by a route, the reverse proxy, or the
   // static server should be handled as a 404.
@@ -44,7 +37,7 @@ configureServer(Angel app) async {
   // Override the default application error handler with one that renders
   // an error page.
   var oldHandler = app.errorHandler;
-  app.errorHandler = (e, req, res)  {
+  app.errorHandler = (e, req, res) {
     if (req.accepts('text/html', strict: true))
       return res.render('error', {'message': e.message});
     return oldHandler(e, req, res);

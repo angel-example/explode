@@ -5,13 +5,11 @@ import 'package:angel_framework/angel_framework.dart';
 
 AngelConfigurer configureServer() {
   return (Angel app) async {
-    app.use('/bombs', new BombService());
-
-    var service = app.service('bombs') as HookedService;
+   HookedService service = app.use('/bombs', new BombService());
 
     service.afterCreated.listen((HookedServiceEvent e) {
       // Bombs should explode 10 seconds after creation.
-      var explosionService = e.service.app.service('explosions');
+      var explosionService = e.getService('explosions');
       var bomb = e.result as Bomb;
 
       new Future.delayed(new Duration(seconds: 10)).then((_) {

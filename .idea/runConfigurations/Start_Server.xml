@@ -1,6 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Start Server" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" singleton="true">
-    <option name="filePath" value="$PROJECT_DIR$/bin/server.dart" />
+    <option name="VMOptions" value="--observe" />
+    <option name="filePath" value="$PROJECT_DIR$/bin/dev.dart" />
     <method />
   </configuration>
 </component>

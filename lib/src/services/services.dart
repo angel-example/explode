@@ -1,18 +1,21 @@
 library explode.services;
 
-import 'package:angel_common/angel_common.dart';
+import 'dart:async';
+import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_websocket/server.dart';
-import 'package:mongo_dart/mongo_dart.dart';
 
-import 'bomb.dart' as Bomb;
-import 'explosion.dart' as Explosion;
-import 'user.dart' as User;
+import 'bomb.dart' as bomb;
+import 'explosion.dart' as explosion;
 
-configureServer(Angel app) async {
-  Db db = app.container.make(Db);
+Future configureServer(Angel app) async {
+  var ws = new AngelWebSocket(app, sendErrors: !app.isProduction);
 
-  await app.configure(new AngelWebSocket(debug: true));
-  await app.configure(Bomb.configureServer());
-  await app.configure(Explosion.configureServer());
-  await app.configure(User.configureServer(db));
+  // Configure all services to be broadcasted via WebSocket
+  await app.configure(ws.configureServer);
+
+  // Use /ws as the endpoint for WebSockets.
+  app.all('/ws', ws.handleRequest);
+
+  await app.configure(bomb.configureServer());
+  await app.configure(explosion.configureServer());
 }

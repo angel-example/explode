@@ -9,12 +9,12 @@ AngelConfigurer configureServer() {
     // you can use to create a service with minimal
     // functionality, without creating a whole new
     // class.
-    app.use('/explosions', new AnonymousService(create: (Explosion data, [params]) {
+    HookedService service = app.use('/explosions',
+        new AnonymousService(create: (Explosion data, [params]) async {
       // This service will simply echo whatever we give to it.
       //
-      // We expect `data` to be a Map with a `bombId`.
       // Validation will be covered in a later tutorial.
-      return {'bombId': data.bombId};
+      return data;
     }));
 
     // Use service hooks to add additional functionality to
@@ -23,7 +23,6 @@ AngelConfigurer configureServer() {
     // This pattern is preferred, as hooks can be applied to any
     // service, regardless of what data store (if any) is being
     // used.
-    var service = app.service('explosions') as HookedService;
     service.beforeAll(hooks.disable()); // Disable for all clients
   };
 }

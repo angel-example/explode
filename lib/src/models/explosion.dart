@@ -1,11 +1,9 @@
-class Explosion {
+library explode.src.models.explosion;
+
+import 'package:angel_serialize/angel_serialize.dart';
+part 'explosion.g.dart';
+
+@serializable
+class _Explosion {
   String bombId;
-
-  Explosion({this.bombId});
-
-  factory Explosion.fromJson(Map data) => new Explosion(bombId: data['bombId']);
-
-  Map toJson() {
-    return {'bombId': bombId};
-  }
 }
