@@ -4,7 +4,7 @@
 
 # source_gen
 .dart_tool
-*.g.dart
+# *.g.dart
 
 # Files and directories created by pub
 .buildlog
